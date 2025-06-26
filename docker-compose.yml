@@ -1,0 +1,51 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15
+    container_name: postgres
+    environment:
+      POSTGRES_DB: mydb
+      POSTGRES_USER: myuser
+      POSTGRES_PASSWORD: mypass
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U myuser -d mydb"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - red_interna
+
+  wildfly:
+    image: jboss/wildfly:latest
+    container_name: wildfly
+    ports:
+      - "8080:8080"  # App
+      - "9990:9990"  # Administración
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      - POSTGRES_DB_HOST=postgres
+      - POSTGRES_DB_PORT=5432
+      - POSTGRES_DB_NAME=mydb
+      - POSTGRES_DB_USER=myuser
+      - POSTGRES_DB_PASSWORD=mypass
+    volumes:
+      - ./deployments:/opt/jboss/wildfly/standalone/deployments
+      - ./drivers:/opt/jboss/wildfly/standalone/deployments/drivers
+      - ./start-wildfly.sh:/opt/jboss/wildfly/start-wildfly.sh # <-- Monta el script dentro del contenedor
+    command: ["/opt/jboss/wildfly/start-wildfly.sh"] # <-- Ejecuta el script al iniciar el contenedor
+    networks:
+      - red_interna
+
+networks:
+  red_interna:
+    driver: bridge
+
+volumes:
+  pgdata:
