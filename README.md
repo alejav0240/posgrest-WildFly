@@ -24,8 +24,8 @@ Sigue estos pasos para levantar el entorno en tu máquina local:
 
 1.  **Clonar el Repositorio** (o descargar los archivos del proyecto):
     ```bash
-    git clone <URL_DEL_REPOSITORIO>
-    cd <directorio_del_proyecto>
+    git clone https://github.com/alejav0240/posgrest-WildFly.git
+    cd posgrest-WildFly
     ```
 
 2.  **Configurar el Controlador JDBC de PostgreSQL:**
@@ -55,23 +55,27 @@ Una vez que los contenedores estén en funcionamiento, puedes interactuar con el
 
 ### Detener el Entorno
 
-Para detener y eliminar los contenedores (y la red asociada) pero mantener los volúmenes de datos (si están definidos), ejecuta:```bash
+Para detener y eliminar los contenedores (y la red asociada) pero mantener los volúmenes de datos (si están definidos), ejecuta:
+```bash
 docker-compose down
 ```
 
-Para detener y eliminar todo, incluyendo los volúmenes de datos (¡cuidado, esto eliminará tus datos de PostgreSQL!):```bash
+Para detener y eliminar todo, incluyendo los volúmenes de datos (¡cuidado, esto eliminará tus datos de PostgreSQL!):
+```bash
 docker-compose down --volumes
 ```
 
 ### Reiniciar un Servicio Específico
 
-Si necesitas reiniciar solo WildFly, por ejemplo:```bash
+Si necesitas reiniciar solo WildFly, por ejemplo:
+```bash
 docker-compose restart wildfly
 ```
 
 ## 📂 Estructura del Proyecto
 
-Aunque la estructura puede variar, un proyecto típico con este entorno podría lucir así:```
+Aunque la estructura puede variar, un proyecto típico con este entorno podría lucir así:
+```
 .
 ├── docker-compose.yml             # Define los servicios (WildFly, PostgreSQL), redes y volúmenes.
 ├── wildfly/                       # Directorio para la configuración de WildFly
