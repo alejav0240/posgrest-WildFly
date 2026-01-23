@@ -1,6 +1,10 @@
 # Entorno de Despliegue con WildFly y PostgreSQL 🚀
 
+![Docker](https://img.shields.io/badge/Docker%20Compose-2496ED?style=for-the-badge&logo=docker&logoColor=white) ![PostgreSQL](    https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white) ![WildFly](https://img.shields.io/badge/WildFly-000?style=for-the-badge&logo=WildFly&logoColor=while)
+
 Este proyecto tiene como objetivo principal establecer un entorno de producción robusto y contenedorizado para aplicaciones Java. Utiliza WildFly como servidor de aplicaciones para ejecutar las aplicaciones Java y PostgreSQL como sistema de gestión de bases de datos relacionales, todo orquestado mediante Docker y Docker Compose para facilitar el despliegue y la gestión. Ideal para equipos que buscan una solución de despliegue consistente y reproducible para sus aplicaciones empresariales Java.
+
+![Home Page](./images/home.png)
 
 ## ✨ Características Principales
 
